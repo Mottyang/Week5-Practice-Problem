@@ -2,6 +2,7 @@ public class MonstersValley2 {
     public static int minimumPrice(int[] dread, int[] price){
         int n = dread.length;
         int totalprice = 0;
+        int minPrice = 0;
         for(int p : price){
              totalprice += p;
         }
@@ -16,30 +17,31 @@ public class MonstersValley2 {
 
         for(int i = 0; i <= n; i++){
             for(int j = 0; j <= totalprice; j++){
-                if(dp[i][j] = -1) continue;
+                if(dp[i][j] == -1) continue;
 
                 if(price[j] < totalprice){
-                    dp[i + 1][j + price[i]] = math.Max(dp[i + 1][j + price[i]] , dp[i][j] + dread[i])
+                    dp[i + 1][j + price[i]] = Math.max(dp[i + 1][j + price[i]] , dp[i][j] + dread[i]);
                 }
 
                 if(dp[i][j] > dread[i]){
-                    dp[i + 1][j] = math.Max(dp[i + 1][j] , dp[i][j])
+                    dp[i + 1][j] = Math.max(dp[i + 1][j] , dp[i][j]);
                 }
             }
         }
 
         for(int j = 0; j <= totalprice; j++){
             if(dp[n][j] != -1){
-                return j;
+                minPrice = j;
             }
         }
+        return minPrice;
 
     }
 
     public static void main(String[] args) {
-        int dread ={5216, 12512, 613, 1256, 66, 17202, 30000, 23512, 2125, 33333};
-        int price ={{2, 2, 1, 1, 1, 1, 2, 1, 2, 1};
-        int MinPrice = minimumPrice(dread, price)
+        int dread[] ={5216, 12512, 613, 1256, 66, 17202, 30000, 23512, 2125, 33333};
+        int price[] ={2, 2, 1, 1, 1, 1, 2, 1, 2, 1};
+        int MinPrice = minimumPrice(dread, price);
         System.out.println(MinPrice);
         
     }
